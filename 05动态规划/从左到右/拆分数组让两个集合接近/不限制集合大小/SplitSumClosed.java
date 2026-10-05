@@ -50,6 +50,18 @@ public class SplitSumClosed {
                 dp[idx][rest] = Math.max(no, yes);
             }
         }
+        for (int idx = 0; idx <= arr.length; idx++) {
+            for (int rest = 0; rest <= total; rest++) {
+                System.out.print(dp[idx][rest] + " ");
+                if (rest % 5 == 4) {
+                    System.out.print("    ");
+                }
+            }
+            System.out.println();
+            if (idx % 4 == 3) {
+                System.out.println();
+            }
+        }
         return dp[0][sum / 2];
     }
 
@@ -71,13 +83,15 @@ public class SplitSumClosed {
     public static void main(String[] args) {
         int maxLen = 20;
         int maxValue = 50;
-        int testTime = 10000;
+        int testTime = 1;
         System.out.println("测试开始");
         for (int i = 0; i < testTime; i++) {
-            int len = (int) (Math.random() * maxLen);
-            int[] arr = randomArray(len, maxValue);
+//            int len = (int) (Math.random() * maxLen);
+//            int[] arr = randomArray(len, maxValue);
+            int[] arr = {3, 2, 4, 7, 3, 1, 7};
             int ans1 = right1(arr);
-            int ans2 = right1(arr);
+            int ans2 = right2(arr);
+            System.out.println(ans2);
             if (ans1 != ans2) {
                 printArray(arr);
                 System.out.println(ans1);
