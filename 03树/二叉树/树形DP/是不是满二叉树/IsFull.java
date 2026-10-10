@@ -1,17 +1,17 @@
 package 二叉树.树形DP.是不是满二叉树;
 
-import 二叉树.树形DP.Node;
+import 二叉树.树形DP.TreeNode;
 
 public class IsFull {
 
-    public static boolean isFull1(Node head) {
+    public static boolean isFull1(TreeNode head) {
         if (head == null) {
             return true;
         }
         return process1(head).isFull;
     }
 
-    private static Info1 process1(Node node) {
+    private static Info1 process1(TreeNode node) {
         if (node == null) {
             return new Info1(0, true);
         }
@@ -35,7 +35,7 @@ public class IsFull {
         }
     }
 
-    public static boolean isFull2(Node head) {
+    public static boolean isFull2(TreeNode head) {
         if (head == null) {
             return true;
         }
@@ -43,7 +43,7 @@ public class IsFull {
         return Math.pow(2, info.height) - 1 == info.nodes;
     }
 
-    private static Info2 process2(Node node) {
+    private static Info2 process2(TreeNode node) {
         if (node == null) {
             return new Info2(0, 0);
         }
@@ -65,16 +65,16 @@ public class IsFull {
     }
 
     // for test
-    public static Node generateRandomBST(int maxLevel, int maxValue) {
+    public static TreeNode generateRandomBST(int maxLevel, int maxValue) {
         return generate(1, maxLevel, maxValue);
     }
 
     // for test
-    public static Node generate(int level, int maxLevel, int maxValue) {
+    public static TreeNode generate(int level, int maxLevel, int maxValue) {
         if (level > maxLevel || Math.random() < 0.5) {
             return null;
         }
-        Node head = new Node((int) (Math.random() * maxValue));
+        TreeNode head = new TreeNode((int) (Math.random() * maxValue));
         head.left = generate(level + 1, maxLevel, maxValue);
         head.right = generate(level + 1, maxLevel, maxValue);
         return head;
@@ -86,7 +86,7 @@ public class IsFull {
         int testTimes = 1000000;
         System.out.println("测试开始");
         for (int i = 0; i < testTimes; i++) {
-            Node head = generateRandomBST(maxLevel, maxValue);
+            TreeNode head = generateRandomBST(maxLevel, maxValue);
             if (isFull1(head) != isFull2(head)) {
                 System.out.println("出错了!");
             }

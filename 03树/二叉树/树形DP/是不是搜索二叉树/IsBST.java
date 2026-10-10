@@ -1,6 +1,6 @@
 package 二叉树.树形DP.是不是搜索二叉树;
 
-import 二叉树.树形DP.Node;
+import 二叉树.树形DP.TreeNode;
 
 import java.util.ArrayList;
 
@@ -9,14 +9,14 @@ import java.util.ArrayList;
  */
 public class IsBST {
 
-    public static boolean isBST1(Node head) {
+    public static boolean isBST1(TreeNode head) {
         if (head == null) {
             return true;
         }
         return process(head).isBST;
     }
 
-    private static Info process(Node node) {
+    private static Info process(TreeNode node) {
         if (node == null) {
             return new Info(Integer.MAX_VALUE, Integer.MIN_VALUE, true);
         }
@@ -45,11 +45,11 @@ public class IsBST {
         }
     }
 
-    public static boolean isBST2(Node head) {
+    public static boolean isBST2(TreeNode head) {
         if (head == null) {
             return true;
         }
-        ArrayList<Node> arr = new ArrayList<>();
+        ArrayList<TreeNode> arr = new ArrayList<>();
         in(head, arr);
         for (int i = 1; i < arr.size(); i++) {
             if (arr.get(i).val <= arr.get(i - 1).val) {
@@ -59,7 +59,7 @@ public class IsBST {
         return true;
     }
 
-    public static void in(Node head, ArrayList<Node> arr) {
+    public static void in(TreeNode head, ArrayList<TreeNode> arr) {
         if (head == null) {
             return;
         }
@@ -69,16 +69,16 @@ public class IsBST {
     }
 
     // for test
-    public static Node generateRandomBST(int maxLevel, int maxValue) {
+    public static TreeNode generateRandomBST(int maxLevel, int maxValue) {
         return generate(1, maxLevel, maxValue);
     }
 
     // for test
-    public static Node generate(int level, int maxLevel, int maxValue) {
+    public static TreeNode generate(int level, int maxLevel, int maxValue) {
         if (level > maxLevel || Math.random() < 0.5) {
             return null;
         }
-        Node head = new Node((int) (Math.random() * maxValue));
+        TreeNode head = new TreeNode((int) (Math.random() * maxValue));
         head.left = generate(level + 1, maxLevel, maxValue);
         head.right = generate(level + 1, maxLevel, maxValue);
         return head;
@@ -89,7 +89,7 @@ public class IsBST {
         int maxValue = 100;
         int testTimes = 1000000;
         for (int i = 0; i < testTimes; i++) {
-            Node head = generateRandomBST(maxLevel, maxValue);
+            TreeNode head = generateRandomBST(maxLevel, maxValue);
             boolean ans1 = isBST1(head);
             boolean ans2 = isBST2(head);
             if (ans1 != ans2) {

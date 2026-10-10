@@ -1,18 +1,18 @@
 package 二叉树.树形DP.是不是完全二叉树;
 
-import 二叉树.树形DP.Node;
+import 二叉树.树形DP.TreeNode;
 
 import java.util.LinkedList;
 
 public class IsCBT {
-    public static boolean isCBT1(Node head) {
+    public static boolean isCBT1(TreeNode head) {
         if (head == null) {
             return true;
         }
         return process(head).isCBT;
     }
 
-    private static Info process(Node node) {
+    private static Info process(TreeNode node) {
         if (node == null) {
             return new Info(0, true, true);
         }
@@ -52,15 +52,15 @@ public class IsCBT {
         }
     }
 
-    public static boolean isCBT2(Node head) {
+    public static boolean isCBT2(TreeNode head) {
         if (head == null) {
             return true;
         }
-        LinkedList<Node> queue = new LinkedList<>();
+        LinkedList<TreeNode> queue = new LinkedList<>();
         // 是否遇到过左右两个孩子不双全的节点
         boolean leaf = false;
-        Node l = null;
-        Node r = null;
+        TreeNode l = null;
+        TreeNode r = null;
         queue.add(head);
         while (!queue.isEmpty()) {
             head = queue.poll();
@@ -89,16 +89,16 @@ public class IsCBT {
     }
 
     // for test
-    public static Node generateRandomBST(int maxLevel, int maxValue) {
+    public static TreeNode generateRandomBST(int maxLevel, int maxValue) {
         return generate(1, maxLevel, maxValue);
     }
 
     // for test
-    public static Node generate(int level, int maxLevel, int maxValue) {
+    public static TreeNode generate(int level, int maxLevel, int maxValue) {
         if (level > maxLevel || Math.random() < 0.5) {
             return null;
         }
-        Node head = new Node((int) (Math.random() * maxValue));
+        TreeNode head = new TreeNode((int) (Math.random() * maxValue));
         head.left = generate(level + 1, maxLevel, maxValue);
         head.right = generate(level + 1, maxLevel, maxValue);
         return head;
@@ -109,7 +109,7 @@ public class IsCBT {
         int maxValue = 100;
         int testTimes = 1000000;
         for (int i = 0; i < testTimes; i++) {
-            Node head = generateRandomBST(maxLevel, maxValue);
+            TreeNode head = generateRandomBST(maxLevel, maxValue);
             if (isCBT1(head) != isCBT2(head)) {
                 System.out.println("Oops!");
             }

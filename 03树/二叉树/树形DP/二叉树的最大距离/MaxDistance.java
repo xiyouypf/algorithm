@@ -1,20 +1,20 @@
 package 二叉树.树形DP.二叉树的最大距离;
 
-import 二叉树.树形DP.Node;
+import 二叉树.树形DP.TreeNode;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 
 public class MaxDistance {
-    public static int maxDistance1(Node head) {
+    public static int maxDistance1(TreeNode head) {
         if (head == null) {
             return 0;
         }
         return process(head).maxDistance;
     }
 
-    private static Info process(Node node) {
+    private static Info process(TreeNode node) {
         if (node == null) {
             return new Info(0, 0);
         }
@@ -36,12 +36,12 @@ public class MaxDistance {
         }
     }
 
-    public static int maxDistance2(Node head) {
+    public static int maxDistance2(TreeNode head) {
         if (head == null) {
             return 0;
         }
-        ArrayList<Node> arr = getPrelist(head);
-        HashMap<Node, Node> parentMap = getParentMap(head);
+        ArrayList<TreeNode> arr = getPrelist(head);
+        HashMap<TreeNode, TreeNode> parentMap = getParentMap(head);
         int max = 0;
         for (int i = 0; i < arr.size(); i++) {
             for (int j = i; j < arr.size(); j++) {
@@ -51,13 +51,13 @@ public class MaxDistance {
         return max;
     }
 
-    public static ArrayList<Node> getPrelist(Node head) {
-        ArrayList<Node> arr = new ArrayList<>();
+    public static ArrayList<TreeNode> getPrelist(TreeNode head) {
+        ArrayList<TreeNode> arr = new ArrayList<>();
         fillPrelist(head, arr);
         return arr;
     }
 
-    public static void fillPrelist(Node head, ArrayList<Node> arr) {
+    public static void fillPrelist(TreeNode head, ArrayList<TreeNode> arr) {
         if (head == null) {
             return;
         }
@@ -66,14 +66,14 @@ public class MaxDistance {
         fillPrelist(head.right, arr);
     }
 
-    public static HashMap<Node, Node> getParentMap(Node head) {
-        HashMap<Node, Node> map = new HashMap<>();
+    public static HashMap<TreeNode, TreeNode> getParentMap(TreeNode head) {
+        HashMap<TreeNode, TreeNode> map = new HashMap<>();
         map.put(head, null);
         fillParentMap(head, map);
         return map;
     }
 
-    public static void fillParentMap(Node head, HashMap<Node, Node> parentMap) {
+    public static void fillParentMap(TreeNode head, HashMap<TreeNode, TreeNode> parentMap) {
         if (head.left != null) {
             parentMap.put(head.left, head);
             fillParentMap(head.left, parentMap);
@@ -84,9 +84,9 @@ public class MaxDistance {
         }
     }
 
-    public static int distance(HashMap<Node, Node> parentMap, Node o1, Node o2) {
-        HashSet<Node> o1Set = new HashSet<>();
-        Node cur = o1;
+    public static int distance(HashMap<TreeNode, TreeNode> parentMap, TreeNode o1, TreeNode o2) {
+        HashSet<TreeNode> o1Set = new HashSet<>();
+        TreeNode cur = o1;
         o1Set.add(cur);
         while (parentMap.get(cur) != null) {
             cur = parentMap.get(cur);
@@ -96,7 +96,7 @@ public class MaxDistance {
         while (!o1Set.contains(cur)) {
             cur = parentMap.get(cur);
         }
-        Node lowestAncestor = cur;
+        TreeNode lowestAncestor = cur;
         cur = o1;
         int distance1 = 1;
         while (cur != lowestAncestor) {
@@ -113,16 +113,16 @@ public class MaxDistance {
     }
 
     // for test
-    public static Node generateRandomBST(int maxLevel, int maxValue) {
+    public static TreeNode generateRandomBST(int maxLevel, int maxValue) {
         return generate(1, maxLevel, maxValue);
     }
 
     // for test
-    public static Node generate(int level, int maxLevel, int maxValue) {
+    public static TreeNode generate(int level, int maxLevel, int maxValue) {
         if (level > maxLevel || Math.random() < 0.5) {
             return null;
         }
-        Node head = new Node((int) (Math.random() * maxValue));
+        TreeNode head = new TreeNode((int) (Math.random() * maxValue));
         head.left = generate(level + 1, maxLevel, maxValue);
         head.right = generate(level + 1, maxLevel, maxValue);
         return head;
@@ -133,7 +133,7 @@ public class MaxDistance {
         int maxValue = 100;
         int testTimes = 1000000;
         for (int i = 0; i < testTimes; i++) {
-            Node head = generateRandomBST(maxLevel, maxValue);
+            TreeNode head = generateRandomBST(maxLevel, maxValue);
             if (maxDistance1(head) != maxDistance2(head)) {
                 System.out.println("Oops!");
             }

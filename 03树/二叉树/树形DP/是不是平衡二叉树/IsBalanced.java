@@ -1,17 +1,17 @@
 package 二叉树.树形DP.是不是平衡二叉树;
 
-import 二叉树.树形DP.Node;
+import 二叉树.树形DP.TreeNode;
 
 public class IsBalanced {
 
-    public static boolean isBalanced1(Node head) {
+    public static boolean isBalanced1(TreeNode head) {
         if (head == null) {
             return true;
         }
         return process1(head).isBalanced;
     }
 
-    private static Info process1(Node node) {
+    private static Info process1(TreeNode node) {
         if (node == null) {
             return new Info(0, true);
         }
@@ -33,14 +33,14 @@ public class IsBalanced {
         }
     }
 
-    public static boolean isBalanced2(Node head) {
+    public static boolean isBalanced2(TreeNode head) {
         boolean[] ans = new boolean[1];
         ans[0] = true;
         process2(head, ans);
         return ans[0];
     }
 
-    public static int process2(Node head, boolean[] ans) {
+    public static int process2(TreeNode head, boolean[] ans) {
         if (!ans[0] || head == null) {
             return -1;
         }
@@ -53,16 +53,16 @@ public class IsBalanced {
     }
 
     // for test
-    public static Node generateRandomBST(int maxLevel, int maxValue) {
+    public static TreeNode generateRandomBST(int maxLevel, int maxValue) {
         return generate(1, maxLevel, maxValue);
     }
 
     // for test
-    public static Node generate(int level, int maxLevel, int maxValue) {
+    public static TreeNode generate(int level, int maxLevel, int maxValue) {
         if (level > maxLevel || Math.random() < 0.5) {
             return null;
         }
-        Node head = new Node((int) (Math.random() * maxValue));
+        TreeNode head = new TreeNode((int) (Math.random() * maxValue));
         head.left = generate(level + 1, maxLevel, maxValue);
         head.right = generate(level + 1, maxLevel, maxValue);
         return head;
@@ -73,7 +73,7 @@ public class IsBalanced {
         int maxValue = 100;
         int testTimes = 1000000;
         for (int i = 0; i < testTimes; i++) {
-            Node head = generateRandomBST(maxLevel, maxValue);
+            TreeNode head = generateRandomBST(maxLevel, maxValue);
             if (isBalanced1(head) != isBalanced2(head)) {
                 System.out.println("Oops!");
             }

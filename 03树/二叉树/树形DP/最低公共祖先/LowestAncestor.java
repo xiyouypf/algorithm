@@ -1,17 +1,17 @@
 package 二叉树.树形DP.最低公共祖先;
 
-import 二叉树.树形DP.Node;
+import 二叉树.树形DP.TreeNode;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 
 public class LowestAncestor {
-    public static Node lowestAncestor1(Node head, Node p, Node q) {
+    public static TreeNode lowestAncestor1(TreeNode head, TreeNode p, TreeNode q) {
         return process(head, p, q).ans;
     }
 
-    private static Info process(Node node, Node p, Node q) {
+    private static Info process(TreeNode node, TreeNode p, TreeNode q) {
         if (node == null) {
             return new Info(false, false, null);
         }
@@ -19,7 +19,7 @@ public class LowestAncestor {
         Info rightInfo = process(node.right, p, q);
         boolean findP = leftInfo.findP || rightInfo.findP || node == p;
         boolean findQ = leftInfo.findQ || rightInfo.findQ || node == q;
-        Node ans = null;
+        TreeNode ans = null;
         if (leftInfo.ans != null) {
             ans = leftInfo.ans;
         } else if (rightInfo.ans != null) {
@@ -33,25 +33,25 @@ public class LowestAncestor {
     public static class Info {
         boolean findP;
         boolean findQ;
-        Node ans;
+        TreeNode ans;
 
-        public Info(boolean findP, boolean findQ, Node ans) {
+        public Info(boolean findP, boolean findQ, TreeNode ans) {
             this.findP = findP;
             this.findQ = findQ;
             this.ans = ans;
         }
     }
 
-    public static Node lowestAncestor2(Node head, Node o1, Node o2) {
+    public static TreeNode lowestAncestor2(TreeNode head, TreeNode o1, TreeNode o2) {
         if (head == null) {
             return null;
         }
         // key的父节点是value
-        HashMap<Node, Node> parentMap = new HashMap<>();
+        HashMap<TreeNode, TreeNode> parentMap = new HashMap<>();
         parentMap.put(head, null);
         fillParentMap(head, parentMap);
-        HashSet<Node> o1Set = new HashSet<>();
-        Node cur = o1;
+        HashSet<TreeNode> o1Set = new HashSet<>();
+        TreeNode cur = o1;
         o1Set.add(cur);
         while (parentMap.get(cur) != null) {
             cur = parentMap.get(cur);
@@ -64,7 +64,7 @@ public class LowestAncestor {
         return cur;
     }
 
-    public static void fillParentMap(Node head, HashMap<Node, Node> parentMap) {
+    public static void fillParentMap(TreeNode head, HashMap<TreeNode, TreeNode> parentMap) {
         if (head.left != null) {
             parentMap.put(head.left, head);
             fillParentMap(head.left, parentMap);
@@ -76,34 +76,34 @@ public class LowestAncestor {
     }
 
     // for test
-    public static Node generateRandomBST(int maxLevel, int maxValue) {
+    public static TreeNode generateRandomBST(int maxLevel, int maxValue) {
         return generate(1, maxLevel, maxValue);
     }
 
     // for test
-    public static Node generate(int level, int maxLevel, int maxValue) {
+    public static TreeNode generate(int level, int maxLevel, int maxValue) {
         if (level > maxLevel || Math.random() < 0.5) {
             return null;
         }
-        Node head = new Node((int) (Math.random() * maxValue));
+        TreeNode head = new TreeNode((int) (Math.random() * maxValue));
         head.left = generate(level + 1, maxLevel, maxValue);
         head.right = generate(level + 1, maxLevel, maxValue);
         return head;
     }
 
     // for test
-    public static Node pickRandomOne(Node head) {
+    public static TreeNode pickRandomOne(TreeNode head) {
         if (head == null) {
             return null;
         }
-        ArrayList<Node> arr = new ArrayList<>();
+        ArrayList<TreeNode> arr = new ArrayList<>();
         fillPrelist(head, arr);
         int randomIndex = (int) (Math.random() * arr.size());
         return arr.get(randomIndex);
     }
 
     // for test
-    public static void fillPrelist(Node head, ArrayList<Node> arr) {
+    public static void fillPrelist(TreeNode head, ArrayList<TreeNode> arr) {
         if (head == null) {
             return;
         }
@@ -117,9 +117,9 @@ public class LowestAncestor {
         int maxValue = 100;
         int testTimes = 1000000;
         for (int i = 0; i < testTimes; i++) {
-            Node head = generateRandomBST(maxLevel, maxValue);
-            Node o1 = pickRandomOne(head);
-            Node o2 = pickRandomOne(head);
+            TreeNode head = generateRandomBST(maxLevel, maxValue);
+            TreeNode o1 = pickRandomOne(head);
+            TreeNode o2 = pickRandomOne(head);
             if (lowestAncestor1(head, o1, o2) != lowestAncestor2(head, o1, o2)) {
                 System.out.println("Oops!");
             }
