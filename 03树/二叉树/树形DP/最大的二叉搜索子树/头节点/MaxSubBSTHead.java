@@ -1,4 +1,4 @@
-package 二叉树.树形DP.最大的二叉搜索子树的头节点;
+package 二叉树.树形DP.最大的二叉搜索子树.头节点;
 
 import java.util.ArrayList;
 import 二叉树.树形DP.TreeNode;

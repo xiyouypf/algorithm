@@ -1,4 +1,4 @@
-package 二叉树.树形DP.最大的二叉搜索子树的大小;
+package 二叉树.树形DP.最大的二叉搜索子树.大小;
 
 import 二叉树.树形DP.TreeNode;
 
