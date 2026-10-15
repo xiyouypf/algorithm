@@ -7,6 +7,7 @@ public class Solution {
         if (head == null) {
             return null;
         }
+        // head来到第一个不需要删除的位置
         while (head != null && head.val == val) {
             head = head.next;
         }
