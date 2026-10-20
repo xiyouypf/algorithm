@@ -1,7 +1,7 @@
 package 归并排序.逆序对;
 
 public class ReversePair {
-    public static int reverPairNumber(int[] arr) {
+    public static int reversePairs(int[] arr) {
         if (arr == null || arr.length < 2) {
             return 0;
         }
@@ -113,7 +113,7 @@ public class ReversePair {
         for (int i = 0; i < testTime; i++) {
             int[] arr1 = generateRandomArray(maxSize, maxValue);
             int[] arr2 = copyArray(arr1);
-            if (reverPairNumber(arr1) != comparator(arr2)) {
+            if (reversePairs(arr1) != comparator(arr2)) {
                 System.out.println("Oops!");
                 printArray(arr1);
                 printArray(arr2);
