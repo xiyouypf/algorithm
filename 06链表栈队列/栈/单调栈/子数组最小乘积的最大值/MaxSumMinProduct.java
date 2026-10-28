@@ -2,7 +2,10 @@ package 栈.单调栈.子数组最小乘积的最大值;
 
 import java.util.Stack;
 
-public class Solution {
+/**
+ * https://leetcode.com/problems/maximum-subarray-min-product/
+ */
+public class MaxSumMinProduct {
     public int maxSumMinProduct(int[] arr) {
         int N = arr.length;
         long[] preSum = new long[N];
