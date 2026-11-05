@@ -1,4 +1,4 @@
-package 打印全部排列.字符串;
+package 暴力递归.打印全部排列.字符串;
 
 import java.util.ArrayList;
 import java.util.List;

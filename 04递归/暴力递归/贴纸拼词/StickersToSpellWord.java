@@ -1,4 +1,4 @@
-package 贴纸拼词;
+package 暴力递归.贴纸拼词;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package 获取数组最大值;
+package 暴力递归.获取数组最大值;
 
 public class GetMax {
     // 求arr中的最大值

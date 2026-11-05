@@ -1,4 +1,4 @@
-package 逆序一个栈;
+package 暴力递归.逆序一个栈;
 
 import java.util.Stack;
 

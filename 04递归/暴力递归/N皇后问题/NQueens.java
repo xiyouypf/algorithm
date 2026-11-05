@@ -1,4 +1,4 @@
-package N皇后问题;
+package 暴力递归.N皇后问题;
 
 public class NQueens {
     public static int num1(int n) {

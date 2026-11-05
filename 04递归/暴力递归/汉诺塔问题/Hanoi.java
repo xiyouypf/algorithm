@@ -1,4 +1,4 @@
-package 汉诺塔问题;
+package 暴力递归.汉诺塔问题;
 
 import java.util.ArrayList;
 import java.util.List;
