@@ -1,4 +1,4 @@
-package 贪心算法.IPO;
+package 贪心算法.做K个项目的最大利润;
 
 import java.util.Comparator;
 import java.util.PriorityQueue;
