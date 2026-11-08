@@ -1,4 +1,4 @@
-package 二叉树.二叉树的遍历.按层;
+package 二叉树.常规题目.二叉树的遍历.按层.类似题目.力扣107二叉树的层序遍历2;
 
 import 二叉树.树形DP.TreeNode;
 
@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-public class LevelTraversalBT {
-    public static List<List<Integer>> levelOrder(TreeNode root) {
+public class Solution {
+    public List<List<Integer>> levelOrderBottom(TreeNode root) {
         if (root == null) {
             return new ArrayList<>();
         }
@@ -27,7 +27,7 @@ public class LevelTraversalBT {
                     queue.addLast(node.right);
                 }
             }
-            ans.add(temp);
+            ans.add(0, temp);
         }
         return ans;
     }

@@ -1,4 +1,4 @@
-package 二叉树.二叉树的遍历.先中后序;
+package 二叉树.常规题目.二叉树的遍历.先中后序;
 
 import 二叉树.树形DP.TreeNode;
 
