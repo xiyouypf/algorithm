@@ -1,4 +1,4 @@
-package 二叉树.常规题目.祖先节点;
+package 二叉树.常规题目.后继节点;
 
 public class SuccessorNode {
     public static class Node {
@@ -12,10 +12,18 @@ public class SuccessorNode {
         }
     }
 
+    /**
+     * # 题解
+     * 有左树：不考虑
+     * 有右树：右节点的最左节点
+     * 当前节点是父节点的左孩子：父节点
+     * 当前节点是父节点的右孩子：一直找父节点，直到节点是父节点的左节点为止
+     */
     public static Node getSuccessorNode(Node node) {
         if (node == null) {
             return node;
         }
+        // 有右树：右节点的最左节点
         if (node.right != null) {
             return getLeftMost(node.right);
         } else { // 无右子树
@@ -28,6 +36,7 @@ public class SuccessorNode {
         }
     }
 
+    // 最左节点
     public static Node getLeftMost(Node node) {
         if (node == null) {
             return node;
