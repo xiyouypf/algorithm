@@ -4,7 +4,7 @@ import java.util.TreeMap;
 
 import 二叉树.有序表.SB树.SizeBalancedTreeMap;
 import 二叉树.有序表.平衡搜索二叉树.AVLTreeMap;
-import 二叉树.有序表.跳表.Code02_SkipListMap;
+import 二叉树.有序表.跳表.SkipListMap;
 
 // 本文件为avl、sbt、skiplist三种结构的测试文件
 public class Compare {
@@ -14,7 +14,7 @@ public class Compare {
 		TreeMap<Integer, Integer> treeMap = new TreeMap<>();
 		AVLTreeMap<Integer, Integer> avl = new AVLTreeMap<>();
 		SizeBalancedTreeMap<Integer, Integer> sbt = new SizeBalancedTreeMap<>();
-		Code02_SkipListMap.SkipListMap<Integer, Integer> skip = new Code02_SkipListMap.SkipListMap<>();
+		SkipListMap<Integer, Integer> skip = new SkipListMap<>();
 		int maxK = 500;
 		int maxV = 50000;
 		int testTime = 1000000;
@@ -214,14 +214,14 @@ public class Compare {
 		TreeMap<Integer, Integer> treeMap;
 		AVLTreeMap<Integer, Integer> avl;
 		SizeBalancedTreeMap<Integer, Integer> sbt;
-		Code02_SkipListMap.SkipListMap<Integer, Integer> skip;
+		SkipListMap<Integer, Integer> skip;
 		long start;
 		long end;
 		int max = 1000000;
 		treeMap = new TreeMap<>();
 		avl = new AVLTreeMap<>();
 		sbt = new SizeBalancedTreeMap<>();
-		skip = new Code02_SkipListMap.SkipListMap<>();
+		skip = new SkipListMap<>();
 		System.out.println("顺序递增加入测试，数据规模 : " + max);
 		start = System.currentTimeMillis();
 		for (int i = 0; i < max; i++) {
