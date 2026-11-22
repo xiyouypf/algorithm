@@ -1,4 +1,4 @@
-package 二叉树.有序表.跳表;
+package 二叉树.有序表.有序表实现.跳表;
 
 import java.util.ArrayList;
 import java.util.List;

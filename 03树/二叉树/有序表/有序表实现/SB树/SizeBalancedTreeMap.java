@@ -1,4 +1,4 @@
-package 二叉树.有序表.SB树;
+package 二叉树.有序表.有序表实现.SB树;
 
 public class SizeBalancedTreeMap<K extends Comparable<K>, V> {
     private SBTNode<K, V> root;

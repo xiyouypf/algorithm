@@ -1,10 +1,10 @@
-package 二叉树.有序表;
+package 二叉树.有序表.有序表实现;
 
 import java.util.TreeMap;
 
-import 二叉树.有序表.SB树.SizeBalancedTreeMap;
-import 二叉树.有序表.平衡搜索二叉树.AVLTreeMap;
-import 二叉树.有序表.跳表.SkipListMap;
+import 二叉树.有序表.有序表实现.SB树.SizeBalancedTreeMap;
+import 二叉树.有序表.有序表实现.平衡搜索二叉树.AVLTreeMap;
+import 二叉树.有序表.有序表实现.跳表.SkipListMap;
 
 // 本文件为avl、sbt、skiplist三种结构的测试文件
 public class Compare {

@@ -1,4 +1,4 @@
-package 二叉树.有序表.平衡搜索二叉树;
+package 二叉树.有序表.有序表实现.平衡搜索二叉树;
 
 public class AVLTreeMap<K extends Comparable<K>, V> {
     private AVLNode<K, V> root;
